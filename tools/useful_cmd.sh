@@ -1,0 +1,1 @@
+tree -I "venv|__init__.py"
