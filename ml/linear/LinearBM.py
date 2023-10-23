@@ -78,5 +78,5 @@ class LinearBaseModel(Protocol):
     def predict(self, pred_params: PredictParams) -> DataFrame:
         ...
 
-    def save(self) -> ml.ModelSave:
+    def save(self) -> ml.ModelInfo:
         ...
