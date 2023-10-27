@@ -1,5 +1,4 @@
 import os
-import shutil
 import uuid
 from logging import Logger
 from typing import Any, List, Protocol
@@ -13,10 +12,12 @@ from pydantic import BaseModel, Field
 from sklearn.model_selection import train_test_split
 
 from app.models import ml
-from config.settings import PROJECT_ROOT
+from config.settings import PROJECT_ROOT, MissionTypes, ModelTypes
 
 
 class TrainParams(BaseModel):
+    mission: MissionTypes
+    model: ModelTypes
     data_path: str
     label: str = Field(default="target")
     train_size: float = Field(default=0.8, gt=0, lt=1)
