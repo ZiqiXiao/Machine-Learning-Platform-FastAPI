@@ -1,8 +1,26 @@
 import os
+from enum import Enum
 from sys import stdout as std
+from typing import List
 
 from loguru import logger
 
+
+# MACHINE LEARNING CONFIG
+# Allowed Mission and Models
+class MissionTypes(str, Enum):
+    LINEAR_REGRESSION = "linear-regression"
+
+
+class ModelTypes(str, Enum):
+    LINEAR_REGRESSION_MODEL = "linear-regression"
+
+
+# PATH CONFIG
+# Get the abs path of the project root file
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# LOGGER CONFIG
 # Set up logger
 logger.remove()
 
@@ -12,9 +30,6 @@ logger.level("WARNING", color="<yellow><bold>", icon="⚠️")
 logger.level("ERROR", color="<red><bold>", icon="❌")
 logger.level("CRITICAL", icon="🔥")
 logger.level("SUCCESS", color="<fg #00FF00><bold>", icon="🎉")
-
-# Get the abs path of the project root file
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # TODO: ICON is not shown in console
 logger.add(
