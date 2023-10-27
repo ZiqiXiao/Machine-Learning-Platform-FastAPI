@@ -13,7 +13,7 @@ class MissionTypes(str, Enum):
 
 
 class ModelTypes(str, Enum):
-    LINEAR_REGRESSION_MODEL = "linear-regression"
+    LR_LINEAR_REGRESSION = "linear-regression"
 
 
 # PATH CONFIG
