@@ -52,6 +52,7 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+test/ml/data/1234_1234_1234
 
 # Translations
 *.mo
