@@ -15,9 +15,12 @@ from app.models import ml
 from config.settings import PROJECT_ROOT, MissionTypes, ModelTypes
 
 
-class TrainParams(BaseModel):
+class BasicParams(BaseModel):
     mission: MissionTypes
     model: ModelTypes
+
+
+class TrainParams(BaseModel):
     data_path: str
     label: str = Field(default="target")
     train_size: float = Field(default=0.8, gt=0, lt=1)
@@ -38,7 +41,7 @@ class LinearBaseModel(Protocol):
     logger: Logger
     _train_store_path: str
 
-    # TODO：Each instance should log to their own folder.
+    # TODO - instance should log to their own folder.
     def __init__(self) -> None:
         self._uid = uuid.uuid4()
         self._train_store_path = os.path.join(
