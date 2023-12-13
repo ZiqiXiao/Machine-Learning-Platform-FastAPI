@@ -44,14 +44,22 @@ class LinearRegressionModel(LinearBM.LinearBaseModel):
         return predicted
 
     @loguru.logger.catch(reraise=True)
-    def save(self) -> ml.ModelInfo:
-        os.makedirs(self._train_store_path, exist_ok=True)
-        save_path: str = os.path.join(self._train_store_path, f"model.joblib")
-        joblib.dump(self.model, save_path)
+    def save(
+        self,
+        name: str | None = None,
+        save_path: str | None = None,
+    ) -> ml.ModelInfo:
+        if not save_path:
+            save_path = os.path.join(self.PROJECT_ROOT, "data", "ml", str(self._uid))
+        os.makedirs(save_path, exist_ok=True)
+        joblib.dump(
+            self.model, os.path.join(save_path, f"{name if name else 'model'}.joblib")
+        )
         self.logger.info(f"Model saved {save_path}")
 
         model_save: ml.ModelInfo = ml.ModelInfo(
             uid=str(self._uid),
             path=save_path,
+            name=name,
         )
         return model_save
